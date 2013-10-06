@@ -14,14 +14,8 @@ class must-have {
   }
 
   exec { 'install gem compass':
-    command => '/opt/ruby/bin/gem install compass',
-    creates => "/opt/ruby/bin/compass",
-    require => Exec["apt-get update 2"],
-  }
-
-  exec { 'install gem sass':
-    command => '/opt/ruby/bin/gem install sass',
-    creates => "/opt/ruby/bin/sass",
+    command => '/usr/bin/apt-get  install ruby-compass',
+    creates => "/usr/lib/ruby/vendor_ruby/compass",
     require => Exec["apt-get update 2"],
   }
 
