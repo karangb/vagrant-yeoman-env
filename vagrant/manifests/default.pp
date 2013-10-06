@@ -36,31 +36,31 @@ class must-have {
     require => [ Exec["apt-get update 2"], Package["nodejs"] ],
   }
 
-  exec { 'install webapp generator':
-    command => '/usr/bin/npm install -g generator-webapp',
-    creates => '/usr/lib/node_modules/generator-webapp',
+  exec { 'install angular generator':
+    command => '/usr/bin/npm install -g generator-angular',
+    creates => '/usr/lib/node_modules/generator-angular',
     require => Exec["install yeoman"],
   }
 
-  file { "/home/vagrant/yeoman/webapp":
+  file { "/home/vagrant/yeoman/angular":
       ensure => "directory",
-      before => Exec['create webapp site'],
-      require => Exec['install webapp generator'],
+      before => Exec['create angular site'],
+      require => Exec['install angular generator'],
   }
 
-  exec { 'create webapp site':
-    command => '/usr/bin/yes | /usr/lib/node_modules/yo/bin/yo webapp',
-    cwd => '/home/vagrant/yeoman/webapp',
-    creates => '/home/vagrant/yeoman/webapp/app',
-    require => File["/home/vagrant/yeoman/webapp"],
+  exec { 'create angular site':
+    command => '/usr/bin/yes | /usr/lib/node_modules/yo/bin/yo angular',
+    cwd => '/home/vagrant/yeoman/angular',
+    creates => '/home/vagrant/yeoman/angular/app',
+    require => File["/home/vagrant/yeoman/angular"],
   }
 
-  file_line { "update hostname in gruntfile": 
-    line => "                hostname: '0.0.0.0'", 
-    path => "/home/vagrant/yeoman/webapp/Gruntfile.js", 
-    match => "hostname: '.*'", 
+  file_line { "update hostname in gruntfile":
+    line => "                hostname: '0.0.0.0'",
+    path => "/home/vagrant/yeoman/angular/Gruntfile.js",
+    match => "hostname: '.*'",
     ensure => present,
-    require => Exec["create webapp site"],
+    require => Exec["create angular site"],
   }
 
   package { ["vim",
