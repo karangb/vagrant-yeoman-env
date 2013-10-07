@@ -35,7 +35,7 @@ This will do the following
     2. Grunt
     3. Bower
     4. Phantomjs
-    5. Yeoman "angular" generator
+    5. Yeoman "angular" generator (booang)
 5. Then yo is called with the angular generator as its argument and a project skeleton is created
 6. And finally, once the angular project is in place a small tweak is made to Gruntfile.js in the /angular directory that makes the angular instance available to the host machine when it is running
 
@@ -49,9 +49,15 @@ Once everything is downloaded and puppet is done running, you can log in to the 
 
         $ vagrant ssh
         $ cd ~/yeoman/angular
-        $ grunt server
+        $ bower install
+        $ grunt server OR nohup grunt server > /dev/null 2>&1 &
 
 Then you can access the server on your host machine's browsers at http://192.168.40.10:9000
+
+### Files to modify (soon to be done in puppet)
+
+In your app folder, edit Gruntfile.js, change host => "*" to host => "0.0.0.0"
+In your app folder, edit karma.conf.js and karma-e2e.conf.js, replace Chrome by Phantomjs
 
 ### Testing
 
@@ -68,6 +74,8 @@ If you want to package your project, ssh to the box, cd to ~/yeoman/angular and 
         $ grunt
 
 Compressed, packaged assets can be found in ~/yeoman/angular/dist
+
+
 
 ## Notes
 
