@@ -14,7 +14,7 @@ This repo is intended as a proof of concept for creating and running a fully-fun
 
 To create your local Yeoman environment:
 
-        $ git clone https://github.com/vincentserpoul/vagrant-yeoman-env.git
+        $ git clone https://github.com/karangb/vagrant-yeoman-env.git
         $ cd vagrant-yeoman-env/vagrant
         $ vagrant up
 
